@@ -25,7 +25,7 @@ namespace CrudAPI.Controllers
             _todoListService = todoListService;
         }
         
-        
+        [Route("CreateSuppliers")]
         [HttpPost]
         public async Task<ActionResult> Insert([FromBody]Suppliers todoList)
         {
@@ -37,7 +37,7 @@ namespace CrudAPI.Controllers
             return BadRequest();
         }
 
-        
+        [Route("GetAllSuppliers")]
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -48,8 +48,9 @@ namespace CrudAPI.Controllers
             }
             return NotFound();
         }
-        
-        [HttpGet("{id}")]
+
+        [Route("SuppliersById/id")]
+        [HttpGet]
         public async Task<ActionResult> GetById(int id)
         {
             var result = await _todoListService.GetById(id);
@@ -59,7 +60,7 @@ namespace CrudAPI.Controllers
             }
             return NotFound();
         }
-        
+        [Route("UpdateSuppliersById")]
         [HttpPut]
         public async Task<ActionResult> Update([FromBody]Suppliers todoList)
         {
@@ -70,9 +71,9 @@ namespace CrudAPI.Controllers
             }
             return BadRequest();
         }
-        
-        
-        [HttpDelete("{id}")]
+
+        [Route("DeleteSuppliers/id")]
+        [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
             await _todoListService.Remove(id);
